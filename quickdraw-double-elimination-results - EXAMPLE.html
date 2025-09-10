@@ -1,0 +1,1860 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Double Elimination Tournament - Results</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); 
+            min-height: 100vh; 
+            line-height: 1.6; 
+            color: #e2e8f0; 
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 30%, #3730a3 50%, #1e3a8a 70%, #0f172a 100%);
+            padding: 40px 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .tournament-title { 
+            font-size: 2.5rem; 
+            color: #f1f5f9; 
+            margin-bottom: 10px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .tournament-info { 
+            color: #cbd5e1; 
+            font-size: 1.1rem;
+        }
+        .section { 
+            background: rgba(30, 41, 59, 0.8); 
+            padding: 25px; 
+            margin: 20px 0; 
+            border-radius: 15px; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); 
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        .section-title { 
+            font-size: 1.8rem; 
+            color: #f1f5f9; 
+            margin-bottom: 20px; 
+            border-bottom: 3px solid #fbbf24; 
+            padding-bottom: 10px; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .podium-result { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+        }
+        .place-card { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            padding: 20px; 
+            border-radius: 12px; 
+            border: 2px solid rgba(255, 255, 255, 0.1); 
+            background: rgba(51, 65, 85, 0.6);
+            transition: all 0.3s ease;
+        }
+        .place-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        .place-card.champion { 
+            border-color: #fbbf24; 
+            background: rgba(251, 191, 36, 0.15); 
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+        }
+        .place-card.runner-up { 
+            border-color: #94a3b8; 
+            background: rgba(148, 163, 184, 0.15); 
+        }
+        .place-card.third-place { 
+            border-color: #d97706; 
+            background: rgba(217, 119, 6, 0.15); 
+        }
+        .place-card.fourth-place { 
+            border-color: #6b7280; 
+            background: rgba(107, 114, 128, 0.15); 
+        }
+        .place-medal { 
+            font-size: 2.5rem; 
+        }
+        .place-info { 
+            flex: 1; 
+        }
+        .place-title { 
+            font-size: 0.9rem; 
+            color: #94a3b8; 
+        }
+        .place-name { 
+            font-size: 1.3rem; 
+            font-weight: bold; 
+            color: #f1f5f9; 
+        }
+        .player-stats-export { 
+            margin-bottom: 25px; 
+            padding: 20px; 
+            background: rgba(51, 65, 85, 0.6); 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .player-stats-export h3 { 
+            color: #f1f5f9; 
+            margin-bottom: 15px; 
+            font-size: 1.4rem;
+        }
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 12px; 
+        }
+        .stat-item-export { 
+            padding: 12px; 
+            background: rgba(30, 41, 59, 0.8); 
+            border-radius: 8px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+        .champion-result { 
+            text-align: center; 
+        }
+        .champion-name { 
+            font-size: 2.5rem; 
+            font-weight: bold; 
+            color: #fbbf24; 
+            margin-bottom: 20px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .champion-stats { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+        }
+        .champion-stats > div { 
+            background: rgba(51, 65, 85, 0.8); 
+            padding: 12px 16px; 
+            border-radius: 8px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+        .match-history-section { 
+            margin-top: 25px; 
+        }
+        .match-history-section h4 { 
+            color: #f1f5f9; 
+            margin-bottom: 15px; 
+            font-size: 1.2rem; 
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 8px;
+        }
+        .match-history-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+        .match-history-item { 
+            padding: 15px; 
+            border-radius: 10px; 
+            border-left: 4px solid #475569; 
+            background: rgba(51, 65, 85, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .match-history-item:hover {
+            transform: translateX(5px);
+        }
+        .match-history-item.match-won { 
+            background: rgba(16, 185, 129, 0.2); 
+            border-left-color: #10b981; 
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .match-history-item.match-lost { 
+            background: rgba(239, 68, 68, 0.2); 
+            border-left-color: #ef4444; 
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .match-info { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 8px; 
+        }
+        .match-result { 
+            font-weight: bold; 
+            padding: 4px 12px; 
+            border-radius: 6px; 
+            font-size: 0.9rem; 
+        }
+        .match-won .match-result { 
+            background: #10b981; 
+            color: white; 
+        }
+        .match-lost .match-result { 
+            background: #ef4444; 
+            color: white; 
+        }
+        .match-details { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-size: 0.9rem; 
+            color: #cbd5e1; 
+        }
+        .times { 
+            font-family: 'Courier New', monospace; 
+            font-weight: bold; 
+            color: #f1f5f9;
+        }
+        .footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            color: #94a3b8; 
+            font-size: 0.9rem; 
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .duel-rounds-breakdown {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 6px;
+            border-left: 3px solid #6366f1;
+        }
+        .duel-rounds-header {
+            font-weight: bold;
+            color: #c7d2fe;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        .duel-round-detail {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin: 2px 0;
+            padding: 2px 5px;
+        }
+        .tournament-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .overview-card {
+            background: rgba(51, 65, 85, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .overview-title {
+            font-weight: bold;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        .overview-value {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        .match-breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .bracket-section {
+            background: rgba(51, 65, 85, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .bracket-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #f1f5f9;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 8px;
+        }
+        .round-section {
+            margin-bottom: 15px;
+        }
+        .round-title {
+            font-weight: bold;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+        .match-summary {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            border-left: 3px solid #6b7280;
+        }
+        .match-summary.duel-match {
+            border-left-color: #8b5cf6;
+        }
+        .match-players {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .match-result {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        .duel-score {
+            color: #a78bfa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="tournament-title">Double Elimination Tournament</h1>
+        <div class="tournament-info">
+            <div>Double Elimination Tournament</div>
+            <div>Event Date: 9/8/2025</div>
+            <div>Started: 9/8/2025 9:44:13 PM</div>
+            <div>Completed: 9/8/2025 9:51:15 PM</div>
+            <div>Generated on 9/8/2025 9:51:15 PM</div>
+            <div>Total Players: 32</div>
+            <div>Recognition Mode: Full Podium</div>
+            <div>Scoring Mode: Duel (Best of 3)</div>
+        </div>
+    </div>
+    
+    
+    <div class="section">
+        <h2 class="section-title">🏆 Tournament Results</h2>
+        <div class="results-content">
+            <div class="podium-result">
+                
+                        <div class="place-card champion">
+                            <div class="place-medal">🥇</div>
+                            <div class="place-info">
+                                <div class="place-title">Champion</div>
+                                <div class="place-name">vb</div>
+                            </div>
+                        </div>
+                        <div class="place-card runner-up">
+                            <div class="place-medal">🥈</div>
+                            <div class="place-info">
+                                <div class="place-title">Runner-up</div>
+                                <div class="place-name">bw</div>
+                            </div>
+                        </div>
+                        <div class="place-card third-place">
+                            <div class="place-medal">🥉</div>
+                            <div class="place-info">
+                                <div class="place-title">3rd Place</div>
+                                <div class="place-name">kl</div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+    
+                <div class="section">
+                    <h2 class="section-title">🎮 Tournament Overview</h2>
+                    
+                <div class="tournament-overview">
+                    <div class="overview-card">
+                        <div class="overview-title">Total Matches</div>
+                        <div class="overview-value">62</div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="overview-title">Total Rounds</div>
+                        <div class="overview-value">124</div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-title">Avg Rounds/Match</div>
+                        <div class="overview-value">2.0</div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-title">Tournament Duration</div>
+                        <div class="overview-value">7m</div>
+                    </div>
+                </div>
+            
+                    
+                    <div class="match-breakdown-grid">
+                        
+                <div class="bracket-section">
+                    <div class="bracket-title">Winners Bracket</div>
+                    
+                    <div class="round-section">
+                        <div class="round-title">Round 1</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                vb vs we
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: vb<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                mq vs jo
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: mq<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                sf vs ty
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: sf<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                dv vs la
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: dv<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                kl vs df
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: kl<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                bi vs mo
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: bi<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                sa vs ri
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: sa<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                as vs tu
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: as<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                bw vs og
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: bw<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                gm vs jk
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: gm<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                pl vs ls
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: pl<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                hd vs wu
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: hd<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                si vs mj
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: si<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                tl vs re
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: tl<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                ms vs mi
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: ms<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                zd vs dk
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: zd<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 2</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                vb vs mq
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: vb<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                sf vs dv
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: sf<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                kl vs bi
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: kl<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                sa vs as
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: sa<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                bw vs gm
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: bw<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                pl vs hd
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: pl<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                si vs tl
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: si<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                ms vs zd
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: ms<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 3</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                vb vs sf
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: vb<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                kl vs sa
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: kl<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                bw vs pl
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: bw<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                si vs ms
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: si<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 4</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                vb vs kl
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: vb<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                bw vs si
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: bw<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 5</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                vb vs bw
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: vb<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+            
+                        
+                <div class="bracket-section">
+                    <div class="bracket-title">Losers Bracket</div>
+                    
+                    <div class="round-section">
+                        <div class="round-title">Round 1</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                we vs jo
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: we<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                ty vs la
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: ty<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                df vs mo
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: df<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                ri vs tu
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: ri<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                og vs jk
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: og<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                ls vs wu
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: ls<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                mj vs re
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: mj<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                mi vs dk
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: mi<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 2</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                mq vs dv
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: mq<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                bi vs as
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: bi<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                gm vs hd
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: gm<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                tl vs zd
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: tl<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                we vs ty
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: we<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                df vs ri
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: df<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                og vs ls
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: og<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                mj vs mi
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: mj<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 3</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                mq vs bi
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: mq<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                gm vs tl
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: gm<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                we vs df
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: we<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                og vs mj
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: og<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 4</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                sf vs sa
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: sf<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                pl vs ms
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: pl<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                mq vs gm
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: mq<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                we vs og
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: we<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 5</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                sf vs pl
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: sf<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                mq vs we
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: mq<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 6</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                kl vs si
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: kl<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                sf vs mq
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: sf<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 7</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                kl vs sf
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: kl<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 8</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                bw vs kl
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: bw<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+            
+                        
+                <div class="bracket-section">
+                    <div class="bracket-title">Grand Final</div>
+                    
+                    <div class="round-section">
+                        <div class="round-title">Round 1</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                vb vs bw
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: vb<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+            
+                    </div>
+                
+                </div>
+            
+    <div class="section"><h2 class="section-title">📊 Player Statistics</h2>
+                                <div class="player-stats-export">
+                                    <h3>🥇 Champion: vb</h3>
+                                    <div class="stats-grid">
+                                        <div class="stat-item-export">
+                                            <strong>Seed:</strong> #1
+                                        </div>
+                                        <div class="stat-item-export">
+                                            <strong>Matches Won:</strong> 6/6
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="stat-item-export">
+                                            <strong>Rounds Won:</strong> 12/12
+                                        </div>
+                                        
+                                        <div class="stat-item-export" style="grid-column: 1 / -1;">
+                                            <strong>Defeated:</strong> we, mq, sf, kl, bw, bw
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="match-history-section">
+                                        <h4>Match History</h4>
+                                        <div class="match-history-list">
+                                            
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 1</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs we</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 2</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs mq</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 3</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs sf</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 4</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs kl</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 5</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs bw</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Grand Final - Round 1</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs bw</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="player-stats-export">
+                                    <h3>🥈 Runner-up: bw</h3>
+                                    <div class="stats-grid">
+                                        <div class="stat-item-export">
+                                            <strong>Seed:</strong> #9
+                                        </div>
+                                        <div class="stat-item-export">
+                                            <strong>Matches Won:</strong> 5/7
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="stat-item-export">
+                                            <strong>Rounds Won:</strong> 10/14
+                                        </div>
+                                        
+                                        <div class="stat-item-export" style="grid-column: 1 / -1;">
+                                            <strong>Defeated:</strong> og, gm, pl, si, kl
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="match-history-section">
+                                        <h4>Match History</h4>
+                                        <div class="match-history-list">
+                                            
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 1</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs og</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 2</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs gm</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 3</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs pl</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 4</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs si</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-lost">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 5</strong>
+                                                            <span class="match-result">Lost</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs vb</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Losers - Round 8</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs kl</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-lost">
+                                                        <div class="match-info">
+                                                            <strong>Grand Final - Round 1</strong>
+                                                            <span class="match-result">Lost</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs vb</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="player-stats-export">
+                                    <h3>🥉 3rd Place: kl</h3>
+                                    <div class="stats-grid">
+                                        <div class="stat-item-export">
+                                            <strong>Seed:</strong> #5
+                                        </div>
+                                        <div class="stat-item-export">
+                                            <strong>Matches Won:</strong> 5/7
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="stat-item-export">
+                                            <strong>Rounds Won:</strong> 10/14
+                                        </div>
+                                        
+                                        <div class="stat-item-export" style="grid-column: 1 / -1;">
+                                            <strong>Defeated:</strong> df, bi, sa, si, sf
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="match-history-section">
+                                        <h4>Match History</h4>
+                                        <div class="match-history-list">
+                                            
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 1</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs df</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - kl
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - kl
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 2</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs bi</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - kl
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - kl
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 3</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs sa</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - kl
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - kl
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-lost">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 4</strong>
+                                                            <span class="match-result">Lost</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs vb</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - vb
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Losers - Round 6</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs si</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - kl
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - kl
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Losers - Round 7</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs sf</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - kl
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - kl
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-lost">
+                                                        <div class="match-info">
+                                                            <strong>Losers - Round 8</strong>
+                                                            <span class="match-result">Lost</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs bw</span>
+                                                            <span class="times">
+                                                                No time 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (No time vs No time) - bw
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    <div class="footer">
+        <p>Generated by Quick Draw Double Elimination Tournament System</p>
+    </div>
+</body>
+</html>
