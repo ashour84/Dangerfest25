@@ -1,0 +1,1972 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dangerfest 2025 3M - Results</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); 
+            min-height: 100vh; 
+            line-height: 1.6; 
+            color: #e2e8f0; 
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 30%, #3730a3 50%, #1e3a8a 70%, #0f172a 100%);
+            padding: 40px 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .tournament-title { 
+            font-size: 2.5rem; 
+            color: #f1f5f9; 
+            margin-bottom: 10px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .tournament-info { 
+            color: #cbd5e1; 
+            font-size: 1.1rem;
+        }
+        .section { 
+            background: rgba(30, 41, 59, 0.8); 
+            padding: 25px; 
+            margin: 20px 0; 
+            border-radius: 15px; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); 
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        .section-title { 
+            font-size: 1.8rem; 
+            color: #f1f5f9; 
+            margin-bottom: 20px; 
+            border-bottom: 3px solid #fbbf24; 
+            padding-bottom: 10px; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .podium-result { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+        }
+        .place-card { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            padding: 20px; 
+            border-radius: 12px; 
+            border: 2px solid rgba(255, 255, 255, 0.1); 
+            background: rgba(51, 65, 85, 0.6);
+            transition: all 0.3s ease;
+        }
+        .place-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        .place-card.champion { 
+            border-color: #fbbf24; 
+            background: rgba(251, 191, 36, 0.15); 
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+        }
+        .place-card.runner-up { 
+            border-color: #94a3b8; 
+            background: rgba(148, 163, 184, 0.15); 
+        }
+        .place-card.third-place { 
+            border-color: #d97706; 
+            background: rgba(217, 119, 6, 0.15); 
+        }
+        .place-card.fourth-place { 
+            border-color: #6b7280; 
+            background: rgba(107, 114, 128, 0.15); 
+        }
+        .place-medal { 
+            font-size: 2.5rem; 
+        }
+        .place-info { 
+            flex: 1; 
+        }
+        .place-title { 
+            font-size: 0.9rem; 
+            color: #94a3b8; 
+        }
+        .place-name { 
+            font-size: 1.3rem; 
+            font-weight: bold; 
+            color: #f1f5f9; 
+        }
+        .player-stats-export { 
+            margin-bottom: 25px; 
+            padding: 20px; 
+            background: rgba(51, 65, 85, 0.6); 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .player-stats-export h3 { 
+            color: #f1f5f9; 
+            margin-bottom: 15px; 
+            font-size: 1.4rem;
+        }
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 12px; 
+        }
+        .stat-item-export { 
+            padding: 12px; 
+            background: rgba(30, 41, 59, 0.8); 
+            border-radius: 8px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+        .champion-result { 
+            text-align: center; 
+        }
+        .champion-name { 
+            font-size: 2.5rem; 
+            font-weight: bold; 
+            color: #fbbf24; 
+            margin-bottom: 20px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .champion-stats { 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+            flex-wrap: wrap; 
+        }
+        .champion-stats > div { 
+            background: rgba(51, 65, 85, 0.8); 
+            padding: 12px 16px; 
+            border-radius: 8px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+        .match-history-section { 
+            margin-top: 25px; 
+        }
+        .match-history-section h4 { 
+            color: #f1f5f9; 
+            margin-bottom: 15px; 
+            font-size: 1.2rem; 
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 8px;
+        }
+        .match-history-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+        }
+        .match-history-item { 
+            padding: 15px; 
+            border-radius: 10px; 
+            border-left: 4px solid #475569; 
+            background: rgba(51, 65, 85, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .match-history-item:hover {
+            transform: translateX(5px);
+        }
+        .match-history-item.match-won { 
+            background: rgba(16, 185, 129, 0.2); 
+            border-left-color: #10b981; 
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .match-history-item.match-lost { 
+            background: rgba(239, 68, 68, 0.2); 
+            border-left-color: #ef4444; 
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .match-info { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 8px; 
+        }
+        .match-result { 
+            font-weight: bold; 
+            padding: 4px 12px; 
+            border-radius: 6px; 
+            font-size: 0.9rem; 
+        }
+        .match-won .match-result { 
+            background: #10b981; 
+            color: white; 
+        }
+        .match-lost .match-result { 
+            background: #ef4444; 
+            color: white; 
+        }
+        .match-details { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-size: 0.9rem; 
+            color: #cbd5e1; 
+        }
+        .times { 
+            font-family: 'Courier New', monospace; 
+            font-weight: bold; 
+            color: #f1f5f9;
+        }
+        .footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            color: #94a3b8; 
+            font-size: 0.9rem; 
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .duel-rounds-breakdown {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 6px;
+            border-left: 3px solid #6366f1;
+        }
+        .duel-rounds-header {
+            font-weight: bold;
+            color: #c7d2fe;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        .duel-round-detail {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin: 2px 0;
+            padding: 2px 5px;
+        }
+        .tournament-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .overview-card {
+            background: rgba(51, 65, 85, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .overview-title {
+            font-weight: bold;
+            color: #f1f5f9;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        .overview-value {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        .match-breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .bracket-section {
+            background: rgba(51, 65, 85, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .bracket-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #f1f5f9;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 8px;
+        }
+        .round-section {
+            margin-bottom: 15px;
+        }
+        .round-title {
+            font-weight: bold;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+        .match-summary {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            border-left: 3px solid #6b7280;
+        }
+        .match-summary.duel-match {
+            border-left-color: #8b5cf6;
+        }
+        .match-players {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .match-result {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        .duel-score {
+            color: #a78bfa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="tournament-title">Dangerfest 2025 3M</h1>
+        <div class="tournament-info">
+            <div>Double Elimination Tournament</div>
+            <div>Event Date: 9/19/2025</div>
+            <div>Started: 9/19/2025 5:49:26 PM</div>
+            <div>Completed: 9/19/2025 7:28:36 PM</div>
+            <div>Generated on 9/19/2025 7:28:36 PM</div>
+            <div>Total Players: 32</div>
+            <div>Recognition Mode: Full Podium</div>
+            <div>Scoring Mode: Duel (Best of 3)</div>
+        </div>
+    </div>
+    
+    
+    <div class="section">
+        <h2 class="section-title">🏆 Tournament Results</h2>
+        <div class="results-content">
+            <div class="podium-result">
+                
+                        <div class="place-card champion">
+                            <div class="place-medal">🥇</div>
+                            <div class="place-info">
+                                <div class="place-title">Champion</div>
+                                <div class="place-name">Danger</div>
+                            </div>
+                        </div>
+                        <div class="place-card runner-up">
+                            <div class="place-medal">🥈</div>
+                            <div class="place-info">
+                                <div class="place-title">Runner-up</div>
+                                <div class="place-name">Jake</div>
+                            </div>
+                        </div>
+                        <div class="place-card third-place">
+                            <div class="place-medal">🥉</div>
+                            <div class="place-info">
+                                <div class="place-title">3rd Place</div>
+                                <div class="place-name">Spencer</div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+    
+                <div class="section">
+                    <h2 class="section-title">🎮 Tournament Overview</h2>
+                    
+                <div class="tournament-overview">
+                    <div class="overview-card">
+                        <div class="overview-title">Total Matches</div>
+                        <div class="overview-value">62</div>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="overview-title">Total Rounds</div>
+                        <div class="overview-value">175</div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-title">Avg Rounds/Match</div>
+                        <div class="overview-value">2.8</div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-title">Tournament Duration</div>
+                        <div class="overview-value">1h 39m</div>
+                    </div>
+                </div>
+            
+                    
+                    <div class="match-breakdown-grid">
+                        
+                <div class="bracket-section">
+                    <div class="bracket-title">Winners Bracket</div>
+                    
+                    <div class="round-section">
+                        <div class="round-title">Round 1</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Mac vs Aiden
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Mac<br>
+                                Time: 0.898 vs 
+                                      0.969
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Chris Hendricks vs Markus Method
+                            </div>
+                            <div class="duel-score">Score: 0 - 1</div>
+                            <div class="match-result">
+                                Winner: Markus Method<br>
+                                Time: No time vs 
+                                      1.062
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Jake vs Sam
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Jake<br>
+                                Time: 0.801 vs 
+                                      0.811
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Axebender vs Lauren
+                            </div>
+                            <div class="duel-score">Score: 1 - 0</div>
+                            <div class="match-result">
+                                Winner: Axebender<br>
+                                Time: 0.788 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                AJ vs Travis
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: AJ<br>
+                                Time: 0.779 vs 
+                                      1.074
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Aahmes vs Bay Watch
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Aahmes<br>
+                                Time: 0.824 vs 
+                                      1.135
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Danger vs Jerry
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Danger<br>
+                                Time: 0.718 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Owen vs Nobody
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Owen<br>
+                                Time: 0.836 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Spencer vs Candice
+                            </div>
+                            <div class="duel-score">Score: 1 - 0</div>
+                            <div class="match-result">
+                                Winner: Spencer<br>
+                                Time: 0.854 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Turkey Sammich vs Joe
+                            </div>
+                            <div class="duel-score">Score: 1 - 2</div>
+                            <div class="match-result">
+                                Winner: Joe<br>
+                                Time: 0.846 vs 
+                                      0.890
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Wolf vs Kev The Fang Man!
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Wolf<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Fred vs Jim Seaton
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Jim Seaton<br>
+                                Time: No time vs 
+                                      0.998
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                JW vs Jeff White
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: JW<br>
+                                Time: 0.811 vs 
+                                      0.972
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Douglas K vs Noah
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Noah<br>
+                                Time: No time vs 
+                                      1.017
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Hedgie vs Prince
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Hedgie<br>
+                                Time: 0.938 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Michael vs Larry
+                            </div>
+                            <div class="duel-score">Score: 1 - 0</div>
+                            <div class="match-result">
+                                Winner: Michael<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 2</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Mac vs Markus Method
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Mac<br>
+                                Time: 0.799 vs 
+                                      1.003
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Jake vs Axebender
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Jake<br>
+                                Time: 0.750 vs 
+                                      0.732
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                AJ vs Aahmes
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: AJ<br>
+                                Time: 0.745 vs 
+                                      0.841
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Danger vs Owen
+                            </div>
+                            <div class="duel-score">Score: 1 - 0</div>
+                            <div class="match-result">
+                                Winner: Danger<br>
+                                Time: 0.759 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Spencer vs Joe
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Spencer<br>
+                                Time: 0.788 vs 
+                                      0.836
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Wolf vs Jim Seaton
+                            </div>
+                            <div class="duel-score">Score: 1 - 0</div>
+                            <div class="match-result">
+                                Winner: Wolf<br>
+                                Time: 1.109 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                JW vs Noah
+                            </div>
+                            <div class="duel-score">Score: 0 - 1</div>
+                            <div class="match-result">
+                                Winner: Noah<br>
+                                Time: No time vs 
+                                      0.995
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Hedgie vs Michael
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Hedgie<br>
+                                Time: 0.977 vs 
+                                      0.759
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 3</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Mac vs Jake
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Mac<br>
+                                Time: 0.749 vs 
+                                      0.759
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                AJ vs Danger
+                            </div>
+                            <div class="duel-score">Score: 1 - 2</div>
+                            <div class="match-result">
+                                Winner: Danger<br>
+                                Time: 0.731 vs 
+                                      0.745
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Spencer vs Wolf
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Spencer<br>
+                                Time: 0.785 vs 
+                                      0.894
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Noah vs Hedgie
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Hedgie<br>
+                                Time: 0.947 vs 
+                                      0.933
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 4</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Mac vs Danger
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Danger<br>
+                                Time: 0.793 vs 
+                                      0.711
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Spencer vs Hedgie
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Spencer<br>
+                                Time: 0.776 vs 
+                                      0.952
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 5</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Danger vs Spencer
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Danger<br>
+                                Time: 0.714 vs 
+                                      0.744
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+            
+                        
+                <div class="bracket-section">
+                    <div class="bracket-title">Losers Bracket</div>
+                    
+                    <div class="round-section">
+                        <div class="round-title">Round 1</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Chris Hendricks vs Aiden
+                            </div>
+                            <div class="duel-score">Score: 0 - 1</div>
+                            <div class="match-result">
+                                Winner: Aiden<br>
+                                Time: No time vs 
+                                      1.048
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Travis vs Bay Watch
+                            </div>
+                            <div class="duel-score">Score: 0 - 1</div>
+                            <div class="match-result">
+                                Winner: Bay Watch<br>
+                                Time: No time vs 
+                                      1.052
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Jerry vs Candice
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Jerry<br>
+                                Time: 1.017 vs 
+                                      1.118
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Nobody vs Turkey Sammich
+                            </div>
+                            <div class="duel-score">Score: 0 - 1</div>
+                            <div class="match-result">
+                                Winner: Turkey Sammich<br>
+                                Time: No time vs 
+                                      0.841
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Sam vs Kev The Fang Man!
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Sam<br>
+                                Time: No time vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Lauren vs Fred
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Fred<br>
+                                Time: 1.131 vs 
+                                      0.912
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Jeff White vs Douglas K
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Jeff White<br>
+                                Time: 1.052 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Prince vs Larry
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Prince<br>
+                                Time: 0.929 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 2</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Axebender vs Markus Method
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Axebender<br>
+                                Time: 0.748 vs 
+                                      1.004
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Aahmes vs Joe
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Aahmes<br>
+                                Time: 0.846 vs 
+                                      0.859
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Owen vs Jim Seaton
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Owen<br>
+                                Time: 0.833 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                JW vs Michael
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: JW<br>
+                                Time: 0.758 vs 
+                                      0.894
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Aiden vs Bay Watch
+                            </div>
+                            <div class="duel-score">Score: 1 - 2</div>
+                            <div class="match-result">
+                                Winner: Bay Watch<br>
+                                Time: 1.086 vs 
+                                      0.977
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Turkey Sammich vs Sam
+                            </div>
+                            <div class="duel-score">Score: 1 - 2</div>
+                            <div class="match-result">
+                                Winner: Sam<br>
+                                Time: 0.811 vs 
+                                      0.990
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Jerry vs Fred
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Fred<br>
+                                Time: No time vs 
+                                      0.880
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Prince vs Jeff White
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Prince<br>
+                                Time: 0.917 vs 
+                                      0.959
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 3</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Axebender vs Aahmes
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Axebender<br>
+                                Time: 0.758 vs 
+                                      0.761
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                JW vs Owen
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: JW<br>
+                                Time: 0.767 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Bay Watch vs Sam
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Bay Watch<br>
+                                Time: 0.963 vs 
+                                      1.017
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Prince vs Fred
+                            </div>
+                            <div class="duel-score">Score: 2 - 0</div>
+                            <div class="match-result">
+                                Winner: Prince<br>
+                                Time: 0.943 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 4</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Jake vs AJ
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Jake<br>
+                                Time: 0.740 vs 
+                                      0.720
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Wolf vs Noah
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Noah<br>
+                                Time: 0.977 vs 
+                                      0.960
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Axebender vs Bay Watch
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Bay Watch<br>
+                                Time: No time vs 
+                                      0.948
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                JW vs Prince
+                            </div>
+                            <div class="duel-score">Score: 1 - 2</div>
+                            <div class="match-result">
+                                Winner: Prince<br>
+                                Time: 0.855 vs 
+                                      0.876
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 5</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Jake vs Bay Watch
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Jake<br>
+                                Time: 0.763 vs 
+                                      0.994
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Noah vs Prince
+                            </div>
+                            <div class="duel-score">Score: 1 - 2</div>
+                            <div class="match-result">
+                                Winner: Prince<br>
+                                Time: 0.917 vs 
+                                      0.938
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 6</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Mac vs Hedgie
+                            </div>
+                            <div class="duel-score">Score: 1 - 0</div>
+                            <div class="match-result">
+                                Winner: Mac<br>
+                                Time: 0.883 vs 
+                                      No time
+                            </div>
+                        </div>
+                    
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Prince vs Jake
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Jake<br>
+                                Time: No time vs 
+                                      0.740
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 7</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Mac vs Jake
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Jake<br>
+                                Time: No time vs 
+                                      0.736
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                    <div class="round-section">
+                        <div class="round-title">Round 8</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Spencer vs Jake
+                            </div>
+                            <div class="duel-score">Score: 0 - 2</div>
+                            <div class="match-result">
+                                Winner: Jake<br>
+                                Time: 0.771 vs 
+                                      0.740
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+            
+                        
+                <div class="bracket-section">
+                    <div class="bracket-title">Grand Final</div>
+                    
+                    <div class="round-section">
+                        <div class="round-title">Round 1</div>
+                        
+                        <div class="match-summary duel-match">
+                            <div class="match-players">
+                                Danger vs Jake
+                            </div>
+                            <div class="duel-score">Score: 2 - 1</div>
+                            <div class="match-result">
+                                Winner: Danger<br>
+                                Time: 0.702 vs 
+                                      0.714
+                            </div>
+                        </div>
+                    
+                    </div>
+                
+                </div>
+            
+                    </div>
+                
+                </div>
+            
+    <div class="section"><h2 class="section-title">📊 Player Statistics</h2>
+                                <div class="player-stats-export">
+                                    <h3>🥇 Champion: Danger</h3>
+                                    <div class="stats-grid">
+                                        <div class="stat-item-export">
+                                            <strong>Seed:</strong> #7
+                                        </div>
+                                        <div class="stat-item-export">
+                                            <strong>Matches Won:</strong> 6/6
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="stat-item-export">
+                                            <strong>Rounds Won:</strong> 11/15
+                                        </div>
+                                        
+                                        <div class="stat-item-export" style="grid-column: 1 / -1;">
+                                            <strong>Defeated:</strong> Jerry, Owen, AJ, Mac, Spencer, Jake
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="match-history-section">
+                                        <h4>Match History</h4>
+                                        <div class="match-history-list">
+                                            
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 1</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Jerry</span>
+                                                            <span class="times">
+                                                                0.718 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (0.750 vs No time) - Danger
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (0.718 vs No time) - Danger
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 2</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Owen</span>
+                                                            <span class="times">
+                                                                0.759 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 0 - 0 
+                                                                        (No time vs No time) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 0 
+                                                                        (No time vs No time) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 1 - 0 
+                                                                        (0.759 vs No time) - Danger
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 3</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs AJ</span>
+                                                            <span class="times">
+                                                                0.745 
+                                                                vs 
+                                                                0.731
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 1 
+                                                                        (0.731 vs 0.748) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 1 
+                                                                        (No time vs 0.745) - Danger
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 0 - 1 
+                                                                        (No time vs 0.763) - Danger
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 4</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Mac</span>
+                                                            <span class="times">
+                                                                0.711 
+                                                                vs 
+                                                                0.793
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 1 
+                                                                        (0.793 vs 0.754) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 1 
+                                                                        (No time vs 0.711) - Danger
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 5</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Spencer</span>
+                                                            <span class="times">
+                                                                0.714 
+                                                                vs 
+                                                                0.744
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (0.736 vs No time) - Danger
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 1 
+                                                                        (0.714 vs 0.744) - Tie
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Grand Final - Round 1</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Jake</span>
+                                                            <span class="times">
+                                                                0.702 
+                                                                vs 
+                                                                0.714
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 0 - 1 
+                                                                        (No time vs 0.714) - Jake
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (0.727 vs No time) - Danger
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 1 - 0 
+                                                                        (0.702 vs No time) - Danger
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="player-stats-export">
+                                    <h3>🥈 Runner-up: Jake</h3>
+                                    <div class="stats-grid">
+                                        <div class="stat-item-export">
+                                            <strong>Seed:</strong> #3
+                                        </div>
+                                        <div class="stat-item-export">
+                                            <strong>Matches Won:</strong> 7/9
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="stat-item-export">
+                                            <strong>Rounds Won:</strong> 16/30
+                                        </div>
+                                        
+                                        <div class="stat-item-export" style="grid-column: 1 / -1;">
+                                            <strong>Defeated:</strong> Sam, Axebender, AJ, Bay Watch, Prince, Mac, Spencer
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="match-history-section">
+                                        <h4>Match History</h4>
+                                        <div class="match-history-list">
+                                            
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 1</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Sam</span>
+                                                            <span class="times">
+                                                                0.801 
+                                                                vs 
+                                                                0.811
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 0 - 1 
+                                                                        (No time vs 0.811) - Sam
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 0 
+                                                                        (No time vs No time) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 1 - 0 
+                                                                        (0.801 vs No time) - Jake
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R4: 1 - 0 
+                                                                        (No time vs No time) - Jake
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 2</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Axebender</span>
+                                                            <span class="times">
+                                                                0.750 
+                                                                vs 
+                                                                0.732
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (0.793 vs No time) - Jake
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 1 
+                                                                        (0.750 vs 0.732) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 1 - 0 
+                                                                        (0.753 vs No time) - Jake
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-lost">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 3</strong>
+                                                            <span class="match-result">Lost</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Mac</span>
+                                                            <span class="times">
+                                                                0.759 
+                                                                vs 
+                                                                0.749
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 0 - 1 
+                                                                        (No time vs 0.759) - Jake
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 0 
+                                                                        (No time vs No time) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 1 - 0 
+                                                                        (0.749 vs No time) - Mac
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R4: 1 - 1 
+                                                                        (0.749 vs 0.788) - Tie
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Losers - Round 4</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs AJ</span>
+                                                            <span class="times">
+                                                                0.740 
+                                                                vs 
+                                                                0.720
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 0 - 0 
+                                                                        (No time vs No time) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 1 
+                                                                        (No time vs 0.720) - AJ
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 1 - 0 
+                                                                        (0.742 vs No time) - Jake
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R4: 0 - 0 
+                                                                        (No time vs No time) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R5: 1 - 0 
+                                                                        (0.740 vs No time) - Jake
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Losers - Round 5</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Bay Watch</span>
+                                                            <span class="times">
+                                                                0.763 
+                                                                vs 
+                                                                0.994
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (0.777 vs No time) - Jake
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 0 
+                                                                        (No time vs No time) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 0 - 1 
+                                                                        (No time vs 0.994) - Bay Watch
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R4: 1 - 1 
+                                                                        (0.763 vs 1.047) - Tie
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Losers - Round 6</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Prince</span>
+                                                            <span class="times">
+                                                                0.740 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 0 - 1 
+                                                                        (No time vs 0.762) - Jake
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 1 
+                                                                        (No time vs 0.740) - Jake
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Losers - Round 7</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Mac</span>
+                                                            <span class="times">
+                                                                0.736 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 0 - 1 
+                                                                        (No time vs 0.736) - Jake
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 0 
+                                                                        (No time vs No time) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 0 - 1 
+                                                                        (No time vs 0.762) - Jake
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Losers - Round 8</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Spencer</span>
+                                                            <span class="times">
+                                                                0.740 
+                                                                vs 
+                                                                0.771
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 1 
+                                                                        (0.771 vs 0.763) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 1 
+                                                                        (No time vs 0.740) - Jake
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-lost">
+                                                        <div class="match-info">
+                                                            <strong>Grand Final - Round 1</strong>
+                                                            <span class="match-result">Lost</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Danger</span>
+                                                            <span class="times">
+                                                                0.714 
+                                                                vs 
+                                                                0.702
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 0 - 1 
+                                                                        (No time vs 0.714) - Jake
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (0.727 vs No time) - Danger
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 1 - 0 
+                                                                        (0.702 vs No time) - Danger
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="player-stats-export">
+                                    <h3>🥉 3rd Place: Spencer</h3>
+                                    <div class="stats-grid">
+                                        <div class="stat-item-export">
+                                            <strong>Seed:</strong> #9
+                                        </div>
+                                        <div class="stat-item-export">
+                                            <strong>Matches Won:</strong> 4/6
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="stat-item-export">
+                                            <strong>Rounds Won:</strong> 7/14
+                                        </div>
+                                        
+                                        <div class="stat-item-export" style="grid-column: 1 / -1;">
+                                            <strong>Defeated:</strong> Candice, Joe, Wolf, Hedgie
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="match-history-section">
+                                        <h4>Match History</h4>
+                                        <div class="match-history-list">
+                                            
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 1</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Candice</span>
+                                                            <span class="times">
+                                                                0.854 
+                                                                vs 
+                                                                No time
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 0 - 0 
+                                                                        (No time vs No time) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (0.854 vs No time) - Spencer
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 0 - 0 
+                                                                        (No time vs No time) - Tie
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 2</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Joe</span>
+                                                            <span class="times">
+                                                                0.788 
+                                                                vs 
+                                                                0.836
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 1 
+                                                                        (0.886 vs 1.009) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 1 
+                                                                        (0.788 vs 0.836) - Tie
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 3</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Wolf</span>
+                                                            <span class="times">
+                                                                0.785 
+                                                                vs 
+                                                                0.894
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 0 - 1 
+                                                                        (No time vs 0.894) - Wolf
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (0.803 vs No time) - Spencer
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R3: 1 - 0 
+                                                                        (0.785 vs No time) - Spencer
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-won">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 4</strong>
+                                                            <span class="match-result">Won</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Hedgie</span>
+                                                            <span class="times">
+                                                                0.776 
+                                                                vs 
+                                                                0.952
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 1 
+                                                                        (0.776 vs 0.952) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 0 
+                                                                        (0.799 vs No time) - Spencer
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-lost">
+                                                        <div class="match-info">
+                                                            <strong>Winners - Round 5</strong>
+                                                            <span class="match-result">Lost</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Danger</span>
+                                                            <span class="times">
+                                                                0.744 
+                                                                vs 
+                                                                0.714
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 0 
+                                                                        (0.736 vs No time) - Danger
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 1 - 1 
+                                                                        (0.714 vs 0.744) - Tie
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                                    <div class="match-history-item match-lost">
+                                                        <div class="match-info">
+                                                            <strong>Losers - Round 8</strong>
+                                                            <span class="match-result">Lost</span>
+                                                        </div>
+                                                        <div class="match-details">
+                                                            <span class="opponent">vs Jake</span>
+                                                            <span class="times">
+                                                                0.771 
+                                                                vs 
+                                                                0.740
+                                                            </span>
+                                                        </div>
+                                                        <div class="duel-rounds-breakdown">
+                                                            <div class="duel-rounds-header">Round Breakdown:</div>
+                                                            
+                                                                    <div class="duel-round-detail">
+                                                                        R1: 1 - 1 
+                                                                        (0.771 vs 0.763) - Tie
+                                                                    </div>
+                                                                
+                                                                    <div class="duel-round-detail">
+                                                                        R2: 0 - 1 
+                                                                        (No time vs 0.740) - Jake
+                                                                    </div>
+                                                                
+                                                        </div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    <div class="footer">
+        <p>Generated by Quick Draw Double Elimination Tournament System</p>
+    </div>
+</body>
+</html>
